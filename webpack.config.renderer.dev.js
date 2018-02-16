@@ -41,12 +41,7 @@ export default merge.smart(baseConfig, {
 
   target: 'electron-renderer',
 
-  entry: [
-    'react-hot-loader/patch',
-    `webpack-dev-server/client?http://localhost:${port}/`,
-    'webpack/hot/only-dev-server',
-    path.join(__dirname, 'app/index.js'),
-  ],
+  entry: path.join(__dirname, 'app/index.js'),
 
   output: {
     publicPath: `http://localhost:${port}/dist/`,
@@ -63,11 +58,9 @@ export default merge.smart(baseConfig, {
             cacheDirectory: true,
             plugins: [
               // Here, we include babel plugins that are only required for the
-              // renderer process. The 'transform-*' plugins must be included
-              // before react-hot-loader/babel
+              // renderer process.
               'transform-class-properties',
               'transform-es2015-classes',
-              'react-hot-loader/babel',
             ],
           },
         },
@@ -206,14 +199,6 @@ export default merge.smart(baseConfig, {
       sourceType: 'var',
     }),
 
-    /**
-     * https://webpack.js.org/concepts/hot-module-replacement/
-     */
-    new webpack.HotModuleReplacementPlugin({
-      // @TODO: Waiting on https://github.com/jantimon/html-webpack-plugin/issues/533
-      // multiStep: true
-    }),
-
     new webpack.NoEmitOnErrorsPlugin(),
 
     /**
@@ -254,7 +239,6 @@ export default merge.smart(baseConfig, {
     stats: 'errors-only',
     inline: true,
     lazy: false,
-    hot: true,
     headers: { 'Access-Control-Allow-Origin': '*' },
     contentBase: path.join(__dirname, 'dist'),
     watchOptions: {
@@ -265,14 +249,6 @@ export default merge.smart(baseConfig, {
     historyApiFallback: {
       verbose: true,
       disableDotRule: false,
-    },
-    before() {
-      if (process.env.START_HOT) {
-        console.log('Staring Main Process...');
-        spawn('npm', ['run', 'start-main-dev'], { shell: true, env: process.env, stdio: 'inherit' })
-          .on('close', code => process.exit(code))
-          .on('error', spawnError => console.error(spawnError));
-      }
     },
   },
 });

@@ -1,0 +1,5 @@
+.editField {
+  background-color: rgb(176, 21, 21);
+  overflow: scroll;
+  width: 100%;
+}

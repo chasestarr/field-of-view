@@ -3,14 +3,13 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router';
 
-import { getToken } from './localstorage';
+import { Token } from './localstorage/index';
 
 export function isLoggedIn() {
-  return !!getToken();
+  return !!Token.read();
 }
 
 export const PrivateRoute = ({ component: Component, ...rest }: any) => {
-  console.log(isLoggedIn());
   return (
     <Route
       {...rest}

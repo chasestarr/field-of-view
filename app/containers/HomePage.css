@@ -1,0 +1,13 @@
+.wrapper {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+}
+
+.path {
+  padding: 0.5rem;
+  margin-left: 0.25rem;
+}
+
+.link:hover {
+  cursor: pointer;
+}

@@ -2,7 +2,7 @@ import { keyBy } from 'lodash';
 
 import Constants from '../utils/constants';
 import { apiRequest, apiRequestAuth } from '../utils/api-requests';
-import { setToken } from '../utils/localstorage';
+import { Token } from '../utils/localstorage';
 
 export function makeAsyncActionSet(actionName) {
   return {
@@ -32,7 +32,7 @@ export function loginUser(authOptions, code) {
 
     return apiRequest(url, method, data)
       .then(function(response) {
-        setToken(response.data.access_token);
+        Token.upsert(response.data.access_token);
         dispatch({
           type: LOGIN.SUCCESS,
           payload: response.data,

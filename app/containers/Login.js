@@ -5,7 +5,6 @@ import { Redirect } from 'react-router-dom';
 import { TextInput, Text, Button } from '@gigster/pil';
 
 import { login } from 'utils/vault-api';
-import { setToken } from 'utils/localstorage';
 
 import styles from './LoginStyles.css';
 
@@ -28,11 +27,10 @@ export class LoginPage extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    login(this.state.vaultAddress, this.state.githubToken)
-      .then(response => {
-        setToken(response.data.auth.client_token);
-        this.setState({ redirectToReferrer: true });
-      })
+    const vaultAddress = this.state.vaultAddress;
+
+    login(vaultAddress, this.state.githubToken)
+      .then(() => this.setState({ redirectToReferrer: true }))
       .catch(() => this.setState({ error: '401: Bad Credentials' }));
   }
 
@@ -47,7 +45,7 @@ export class LoginPage extends React.Component {
     return (
       <form className={styles.loginContainer}>
         <div className={styles.field}>
-          <Text size="label" status="primary">
+          <Text size="label" status="primary" tint={2}>
             Vault Address
           </Text>
           <TextInput
@@ -56,7 +54,7 @@ export class LoginPage extends React.Component {
           />
         </div>
         <div className={styles.field}>
-          <Text size="label" status="primary">
+          <Text size="label" status="primary" tint={2}>
             Github Token
           </Text>
           <TextInput

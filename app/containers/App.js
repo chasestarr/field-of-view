@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 import type { Children } from 'react';
 
-import TitleBar from '../components/TitleBar';
-import Content from '../components/Content';
+import TitleBar from '../components/TitleBar/index';
+import Content from '../components/Content/index';
 
 export default class App extends Component {
   props: {

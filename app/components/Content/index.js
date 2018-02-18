@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './Content.css';
+import styles from './style.css';
 
 function Content(props) {
   return <div className={styles.content}>{props.children}</div>;

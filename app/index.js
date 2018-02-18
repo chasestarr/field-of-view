@@ -6,13 +6,20 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 import Routes from './routes';
-import rootReducer from './reducers';
+import reducer from './state/reducer';
 
 import './app.global.css';
 
-const enhancer = applyMiddleware(thunk);
+const logger = store => next => action => {
+  console.log('dispatching', action);
+  let result = next(action);
+  console.log('next state', store.getState());
+  return result;
+};
+
+const enhancer = applyMiddleware(thunk, logger);
 function configureStore(initialState?: any) {
-  return createStore(rootReducer, initialState, enhancer);
+  return createStore(reducer, initialState, enhancer);
 }
 
 const store = configureStore();

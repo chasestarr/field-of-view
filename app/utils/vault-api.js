@@ -34,11 +34,11 @@ export function sealStatus() {
 }
 
 export function listSecrets(path) {
-  const url = `${VaultAddress.read()}/v1/secret/${path}?list=true`;
+  const url = `${VaultAddress.read()}/v1/secret${path}?list=true`;
   return authenticatedRequest(Token.read(), 'GET', url).then(response => response.data.data.keys);
 }
 
 export function readSecret(path) {
-  const url = `${VaultAddress.read()}/v1/secret/${path}`;
+  const url = `${VaultAddress.read()}/v1/secret${path}`;
   return authenticatedRequest(Token.read(), 'GET', url).then(response => response.data.data);
 }

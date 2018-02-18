@@ -1,10 +1,8 @@
-const { ipcRenderer } = require('electron');
-
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import { TextInput, Text, Button } from '@gigster/pil';
 
-import { login } from 'utils/vault-api';
+import { login } from '../utils/api';
 
 import styles from './LoginStyles.css';
 
@@ -16,7 +14,6 @@ export class LoginPage extends React.Component {
       vaultAddress: '',
       githubToken: '',
       error: '',
-      redirectToReferrer: false,
     };
   }
 
@@ -30,55 +27,50 @@ export class LoginPage extends React.Component {
     const vaultAddress = this.state.vaultAddress;
 
     login(vaultAddress, this.state.githubToken)
-      .then(() => this.setState({ redirectToReferrer: true }))
+      .then(() => this.props.history.push('/'))
       .catch(() => this.setState({ error: '401: Bad Credentials' }));
   }
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: '/' } };
-    const { redirectToReferrer } = this.state;
-
-    if (redirectToReferrer) {
-      return <Redirect to={from} />;
-    }
-
     return (
-      <form className={styles.loginContainer}>
-        <div className={styles.field}>
-          <Text size="label" status="primary" tint={2}>
-            Vault Address
-          </Text>
-          <TextInput
-            value={this.state.vaultAddress}
-            onChange={e => this.handleChange(e, 'vaultAddress')}
-          />
-        </div>
-        <div className={styles.field}>
-          <Text size="label" status="primary" tint={2}>
-            Github Token
-          </Text>
-          <TextInput
-            value={this.state.githubToken}
-            onChange={e => this.handleChange(e, 'githubToken')}
-          />
-        </div>
-        <div className={styles.field}>
-          <Button
-            type="submit"
-            disabled={!this.state.vaultAddress || !this.state.githubToken}
-            onClick={this.handleSubmit.bind(this)}
-          >
-            Login
-          </Button>
-        </div>
-        {this.state.error && (
-          <Text size="label" status="danger">
-            {this.state.error}
-          </Text>
-        )}
-      </form>
+      <div className={styles.page}>
+        <form className={styles.loginContainer}>
+          <div className={styles.field}>
+            <Text size="label" tint={2}>
+              Vault Address
+            </Text>
+            <TextInput
+              value={this.state.vaultAddress}
+              onChange={e => this.handleChange(e, 'vaultAddress')}
+            />
+          </div>
+          <div className={styles.field}>
+            <Text size="label" tint={2}>
+              Github Token
+            </Text>
+            <TextInput
+              value={this.state.githubToken}
+              onChange={e => this.handleChange(e, 'githubToken')}
+            />
+          </div>
+          <div className={styles.field}>
+            <Button
+              type="submit"
+              disabled={!this.state.vaultAddress || !this.state.githubToken}
+              onClick={this.handleSubmit.bind(this)}
+            >
+              Login
+            </Button>
+          </div>
+          {this.state.error && (
+            <Text size="label" status="danger">
+              {this.state.error}
+            </Text>
+          )}
+        </form>
+      </div>
     );
   }
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);

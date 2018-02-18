@@ -14,6 +14,10 @@ class Storage {
   read() {
     return window.localStorage.getItem(this.key);
   }
+
+  remove() {
+    window.localStorage.removeItem(this.key);
+  }
 }
 
 export default Storage;

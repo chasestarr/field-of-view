@@ -1,7 +1,11 @@
 .container {
+  background-color: white;
   height: 25px;
   position: fixed;
   width: 100%;
   z-index: 10;
   -webkit-app-region: drag;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

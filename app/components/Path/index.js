@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button, Icon } from '@gigster/pil';
 
 import { $currentPath, appendCurrentPath } from '../../state/vault';
-import { listSecrets } from '../../utils/vault-api';
+import { listSecrets } from '../../utils/api';
 
 import styles from './styles.css';
 
@@ -43,7 +43,6 @@ class Path extends React.Component {
                   <Icon
                     name={isSecret ? 'InfoOutline' : 'FolderOpen'}
                     status="outline"
-                    tint={1}
                     size="subheading"
                   />
                 </span>

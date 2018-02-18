@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { Text } from '@gigster/pil';
 
 import { $currentPath } from '../../state/vault';
-import { readSecret } from '../../utils/vault-api';
+import { readSecret } from '../../utils/api';
+
+import styles from './styles.css';
 
 class Secret extends React.Component {
   constructor(props) {
@@ -28,11 +30,16 @@ class Secret extends React.Component {
   render() {
     return (
       <div>
-        {Object.keys(this.state.data).map(key => (
-          <div key={key}>
-            <Text>
-              {key}:{this.state.data[key]}
+        {Object.keys(this.state.data).map((key, idx) => (
+          <div key={key} className={styles.entry}>
+            <Text tint={1}>
+              <span className={styles.simpleSelect}>{key}</span>
+              {' : '}
             </Text>
+            <Text tint={1}>
+              <span className={styles.simpleSelect}>{this.state.data[key]}</span>
+            </Text>
+            {Object.keys(this.state.data).length - 1 !== idx && <div className={styles.divider} />}
           </div>
         ))}
       </div>

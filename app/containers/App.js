@@ -1,15 +1,9 @@
-// @flow
 import React, { Component } from 'react';
-import type { Children } from 'react';
 
-import TitleBar from '../components/TitleBar/index';
 import Content from '../components/Content/index';
+import TitleBar from '../components/TitleBar/index';
 
 export default class App extends Component {
-  props: {
-    children: Children,
-  };
-
   render() {
     return (
       <div>

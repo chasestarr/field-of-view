@@ -1,9 +1,7 @@
-// @flow
-
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Breadcrumbs from '../components/Breadcrumbs/index';
+import Header from '../components/Header/index';
 import Path from '../components/Path/index';
 import Secret from '../components/Secret/index';
 import { $currentPath, $isCurrentPathSecret } from '../state/vault';
@@ -14,7 +12,7 @@ class HomePage extends React.Component {
   render() {
     return (
       <div>
-        <Breadcrumbs />
+        <Header />
         <div className={styles.wrapper}>
           {this.props.isCurrentPathSecret ? <Secret /> : <Path />}
         </div>

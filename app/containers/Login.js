@@ -33,9 +33,9 @@ export class LoginPage extends React.Component {
 
   render() {
     return (
-      <div className={styles.page}>
-        <form className={styles.loginContainer}>
-          <div className={styles.field}>
+      <div className="login-page">
+        <form className="login-container">
+          <div className="login-field">
             <Text size="label" tint={2}>
               Vault Address
             </Text>
@@ -44,7 +44,7 @@ export class LoginPage extends React.Component {
               onChange={e => this.handleChange(e, 'vaultAddress')}
             />
           </div>
-          <div className={styles.field}>
+          <div className="login-field">
             <Text size="label" tint={2}>
               Github Token
             </Text>
@@ -53,7 +53,7 @@ export class LoginPage extends React.Component {
               onChange={e => this.handleChange(e, 'githubToken')}
             />
           </div>
-          <div className={styles.field}>
+          <div className="login-field">
             <Button
               type="submit"
               disabled={!this.state.vaultAddress || !this.state.githubToken}

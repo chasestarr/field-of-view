@@ -11,7 +11,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <div className={styles.container}>
+        <div className="app-title">
           <Text size="label">{VaultAddress.read()}</Text>
         </div>
         <Content>{this.props.children}</Content>

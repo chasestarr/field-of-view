@@ -13,9 +13,7 @@ class HomePage extends React.Component {
     return (
       <div>
         <Header />
-        <div className={styles.wrapper}>
-          {this.props.isCurrentPathSecret ? <Secret /> : <Path />}
-        </div>
+        <div className="home-wrapper">{this.props.isCurrentPathSecret ? <Secret /> : <Path />}</div>
       </div>
     );
   }

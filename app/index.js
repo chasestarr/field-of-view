@@ -8,8 +8,6 @@ import thunk from 'redux-thunk';
 import Routes from './routes';
 import reducer from './state/reducer';
 
-import './app.global.css';
-
 const logger = store => next => action => {
   console.log('dispatching', action);
   let result = next(action);

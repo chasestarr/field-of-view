@@ -31,15 +31,15 @@ class Secret extends React.Component {
     return (
       <div>
         {Object.keys(this.state.data).map((key, idx) => (
-          <div key={key} className={styles.entry}>
+          <div key={key} className="secret-entry">
             <Text tint={1}>
-              <span className={styles.simpleSelect}>{key}</span>
+              <span className="secret-select">{key}</span>
               {' : '}
             </Text>
             <Text tint={1}>
-              <span className={styles.simpleSelect}>{this.state.data[key]}</span>
+              <span className="secret-select">{this.state.data[key]}</span>
             </Text>
-            {Object.keys(this.state.data).length - 1 !== idx && <div className={styles.divider} />}
+            {Object.keys(this.state.data).length - 1 !== idx && <div className="secret-divider" />}
           </div>
         ))}
       </div>

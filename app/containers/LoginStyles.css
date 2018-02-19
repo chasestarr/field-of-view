@@ -1,13 +1,13 @@
-.loginContainer {
+.login-container {
   width: 20rem;
   padding: 2rem;
 }
 
-.field {
+.login-field {
   margin-top: 1rem;
 }
 
-.page {
+.login-page {
   display: flex;
   justify-content: center;
   align-items: center;

@@ -8,7 +8,7 @@ import styles from './styles.css';
 class Header extends React.Component {
   render() {
     return (
-      <div className={styles.header}>
+      <div className="header">
         <Breadcrumbs />
         <Logout />
       </div>

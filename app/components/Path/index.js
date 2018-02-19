@@ -37,9 +37,9 @@ class Path extends React.Component {
         {this.state.keys.map(key => {
           const isSecret = key.charAt(key.length - 1) !== '/';
           return (
-            <div key={key} className={styles.row}>
+            <div key={key} className="path-row">
               <Button onClick={this.handleClick.bind(this, key)} status="transparent">
-                <span className={styles.icon}>
+                <span className="path-icon">
                   <Icon
                     name={isSecret ? 'InfoOutline' : 'FolderOpen'}
                     status="outline"
